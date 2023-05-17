@@ -59,7 +59,16 @@ async function isowner(req, res, next) {
             });
         }
 
-        const taskExist = await Tasks.findById(task_id);
+        let taskExist;
+        try{
+            taskExist = await Tasks.findById(task_id);
+        }catch(err){
+            return res.status(404).json({
+                status: 'fail',
+                message: 'Given task doesnot exist'
+            })
+        }
+        
         if(!taskExist){
             return res.status(404).json({
                 status: 'fail',
@@ -77,7 +86,7 @@ async function isowner(req, res, next) {
         next();
 
     } catch (err) {
-        return res.status(404).json({
+        return res.status(400).json({
             status: "error",
             message: "Unable to check"
         })
