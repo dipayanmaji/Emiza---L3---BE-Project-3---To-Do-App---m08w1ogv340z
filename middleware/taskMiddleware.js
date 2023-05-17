@@ -59,7 +59,7 @@ async function isowner(req, res, next) {
             });
         }
 
-        const taskExist = await Tasks.findOne({_id: task_id});
+        const taskExist = await Tasks.findById(task_id);
         if(!taskExist){
             return res.status(404).json({
                 status: 'fail',
