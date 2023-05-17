@@ -77,7 +77,7 @@ async function isowner(req, res, next) {
         next();
 
     } catch (err) {
-        return res.status(400).json({
+        return res.status(404).json({
             status: "error",
             message: "Unable to check"
         })
