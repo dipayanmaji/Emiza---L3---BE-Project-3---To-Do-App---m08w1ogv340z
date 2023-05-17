@@ -67,7 +67,7 @@ async function isowner(req, res, next) {
             })
         }
 
-        if(decodedToken.userId !== taskExist.creator_id){
+        if(decodedToken.userId != taskExist.creator_id){
             return res.status(403).json({
                 status: 'fail',
                 message: 'Access Denied'
